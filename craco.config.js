@@ -1,6 +1,7 @@
 const CracoAlias = require('craco-alias')
 
 const alias = {
+    '@configs':'configs',
     '@contexts':'contexts',
     '@hooks':'hooks',
     '@styles':'styles',
