@@ -39,7 +39,7 @@ function createRequestConfig(
     }
 }
 
-export async function getRequest(url: string, token: string): Promise<any> {
+export async function getRequest(url: string): Promise<any> {
     const requestConfig: requestConfigType = createRequestConfig('get', url);
     return request(requestConfig);
 }
