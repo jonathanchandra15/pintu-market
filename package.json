@@ -29,6 +29,7 @@
     "@craco/craco": "^7.1.0",
     "@tanstack/react-query": "^5.62.2",
     "craco-alias": "^3.0.1",
+    "env-cmd": "^10.1.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.4.2",
