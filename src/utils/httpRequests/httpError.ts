@@ -1,11 +1,11 @@
 export class HttpError {
-    private errorMessage: string = '';
-    
-    constructor(errorMessage: string) {
-        this.errorMessage = errorMessage;
-    }
+  private errorMessage: string = ''
 
-    public getErrorMessage() {
-        return this.errorMessage;
-    }
+  constructor(errorMessage: string) {
+    this.errorMessage = errorMessage
+  }
+
+  public getErrorMessage() {
+    return this.errorMessage
+  }
 }
