@@ -1,13 +1,13 @@
 const CracoAlias = require('craco-alias')
 
 const alias = {
-    '@configs':'configs',
-    '@contexts':'contexts',
-    '@hooks':'hooks',
-    '@styles':'styles',
-    '@tests':'tests',
-    '@utils':'utils',
-    '@views':'views'
+    '@configs':'./configs',
+    '@contexts':'./contexts',
+    '@hooks':'./hooks',
+    '@styles':'./styles',
+    '@tests':'./tests',
+    '@utils':'./utils',
+    '@views':'./views'
 }
 
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
             plugin: CracoAlias,
             options: {
                 source:'options',
-                baseUrl: './src',
+                baseUrl: 'src',
                 aliases: alias,
             },
         }
