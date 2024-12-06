@@ -17,9 +17,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "set PORT=3000 && craco start",
-    "build": "craco build",
-    "test": "craco test",
+    "start": "set PORT=3000 && env-cmd -f ./src/main/config/.env craco start",
+    "build": "env-cmd -f ./src/main/config/.env craco build",
+    "test": "env-cmd -f ./src/configs/.env.test craco test --watchAll=false --coverage",
     "eject": "craco eject",
     "lint:fix": "eslint src/**/*.js --fix",
     "lint": "eslint src/**/*.js",
