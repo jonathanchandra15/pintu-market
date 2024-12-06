@@ -1,4 +1,4 @@
-export type requestConfigType = {
+export type RequestConfigType = {
     method: string,
     url: string,
     headers: object,

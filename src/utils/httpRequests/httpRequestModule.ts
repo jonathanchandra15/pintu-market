@@ -1,12 +1,12 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { requestConfigType } from '@utils/customTypes/httpRequestModuleCustomType';
+import { RequestConfigType } from '@utils/customTypes/httpRequestModuleCustomType';
 import { HttpError } from '@utils/httpRequests/httpError';
 
 // function handleAxiosError(error: AxiosError) {
 
 // }
 
-async function request(requestConfig: requestConfigType ): Promise<object> {
+async function request(requestConfig: RequestConfigType ): Promise<object> {
     let response: AxiosResponse;
     let jsonResponse: object = {};
     
@@ -27,7 +27,7 @@ function createRequestConfig(
     method: string,
     url: string,
     headers?: object,
-    body?: string | object): requestConfigType {
+    body?: string | object): RequestConfigType {
 
     return {
         method: method,
@@ -40,6 +40,6 @@ function createRequestConfig(
 }
 
 export async function getRequest(url: string): Promise<any> {
-    const requestConfig: requestConfigType = createRequestConfig('get', url);
+    const requestConfig: RequestConfigType = createRequestConfig('get', url);
     return request(requestConfig);
 }
