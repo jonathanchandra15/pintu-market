@@ -35,7 +35,7 @@ function createRequestConfig(
     headers: { ...headers },
     data: body ?? '',
     timeout: 2000,
-    withCredentials: true,
+    withCredentials: false,
   }
 }
 
