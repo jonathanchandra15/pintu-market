@@ -1,46 +1,94 @@
-# Getting Started with Create React App
+# Pintu Frontend Candidate Assignment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Replicated Pintu website page (https://pintu.co.id/market) for Pintu Frontend candidate assignment
 
-## Available Scripts
+## How to run the application
 
-In the project directory, you can run:
+Install all dependencies
 
-### `npm start`
+```bash
+npm install
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Run the application
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+npm start
+```
 
-### `npm test`
+## Assumptions
+- The assignment PDF file mentioned that the most important thing is the token list and the provided APIs also for the token list so the page only has the title and the token list.
+- It appears in the actual page (https://pintu.co.id/market), the token prices are refreshed every around 5 seconds so this application will also do the same.
+- Market cap is not included on the token list table column since the provided APIs don't have the market cap information.
+- Since request to the provided APIs got blocked by CORS policy and this CORS policy should be enabled from server side, this application can be run in development by using Chrome browser extension: Allow CORS: Access-Control-Allow-Origin
+- Maximal fraction digit for price number is set to 8 digits, example: Rp 1,1234567890 will become Rp 1,12345678
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Deployment
+- Automatic deployment is done using Github Action
+- Deployed to Vercel, url: https://pintu-market-chi.vercel.app/market
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## About The Application
+### Tech Stack:
+- React 18
+- Typescript
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Additional Libraries:
+- Axios: used for send request to APIs. Chose axios because its browser support is wider than fetch.
+- Craco: used for import path alias for better readability.
+- Eslint: used for linting purpose.
+- Prettier: used for code formatter.
+- Sass: used for styling component with more features than CSS. Example: create & import variables, nested css selector
+- Primereact: used for component library
+- env-cmd: used for use .env file when running application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Project Structure
+This project structure is implementing MVVM (Model, View, ViewModel) design pattern. 
 
-### `npm run eject`
+MVVM component:
+- Model: contain business logic and handle data that will be presented by View component
+- View: present user interface to the user using data from Model component
+- ViewModel: handle state management and presentation logic. Act as bridge that help translate data from Model component to be in format that can be presented by View component
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This project structure tree:
+```bash
+├───.github
+│   └───workflows
+├───.vercel
+├───public
+└───src
+    ├───assets
+    │   └───fonts
+    ├───configs
+    ├───contexts
+    ├───hooks
+    ├───styles
+    │   ├───commons
+    │   └───market
+    ├───tests
+    ├───utils
+    │   ├───apis
+    │   ├───customProps
+    │   ├───customTypes
+    │   │   ├───contexts
+    │   │   ├───utils
+    │   │   └───views
+    │   └───httpRequests
+    └───views
+        ├───commons
+        └───market
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+MVVM design pattern in this project structure:
+- Model: Since we don't handle the data and only get the data from APIs, there is not many Model component in this project. There is only HttpError class (./src/utils/httpRequests/httpError.ts) that will be used for error handling.
+- View: Every UI components are the View model which will present the UI interface to the user. All of the UI components are located in "./src/views".
+- ViewModel: all custom hooks located in "./src/hooks" are the ViewModel component. Custom hooks will have the state management, all data fetching process, and all of the other processes that using the data fetched from APIs. Custom hooks will give the processed data to the View component.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Some benefits of this design pattern:
+- Separation of concerns: Each components has it owns purpose.
+- Enhanced testability: We can test the component with its business logic seperately. We can test View component only for its behavior without considering the data and we can test the business logic in ViewModel component without need to render the View component.
+- Reusability: We can reuse the ViewModel component in some other View components.
+- Maintainability: seperating the View component with ViewModel component make codes looks more concise, easy to read, and easy to maintain.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Improvement Opportunity
+- Maybe Lazy loading on token list can be one of the improvement opportunity for better website performance
