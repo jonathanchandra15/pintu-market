@@ -5,21 +5,9 @@
 }
 
 @font-face {
-    font-family: "Neue Haas Grotesk Pro - Bold";
-    src: local("NHaasGroteskTXPro-75Rg"),
-        url("../../assets/fonts/NHaasGroteskTXPro-75Bd.ttf") format("truetype");
-}
-
-@font-face {
     font-family: "Inter";
     src: local("Inter_28pt-Regular"),
         url("../../assets/fonts/Inter_28pt-Regular.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "Inter - Bold";
-    src: local("Inter_24pt-Bold"),
-        url("../../assets/fonts/Inter_24pt-Bold.ttf") format("truetype");
 }
 
 $red-color: #e54040;
@@ -62,7 +50,7 @@ p {
 }
 
 .m-font-inter--bold {
-    font-family: "Inter - Bold"!important;
+    font-weight: 600;
 }
 
 .m-font--green {
