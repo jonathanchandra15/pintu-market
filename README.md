@@ -15,12 +15,14 @@ Run the application
 ```bash
 npm start
 ```
+Then open http://localhost:3000/ in your browser. 
+*Make sure you are using browser with extension that allow CORS, example: "Allow CORS: Access-Control-Allow-Origin" extension in Chrome browser.
 
 ## Assumptions
 - The assignment PDF file mentioned that the most important thing is the token list and the provided APIs also for the token list so the page only has the title and the token list.
 - It appears in the actual page (https://pintu.co.id/market), the token prices are refreshed every around 5 seconds so this application will also do the same.
 - Market cap is not included on the token list table column since the provided APIs don't have the market cap information.
-- Since request to the provided APIs got blocked by CORS policy and this CORS policy should be enabled from server side, this application can be run in development by using Chrome browser extension: Allow CORS: Access-Control-Allow-Origin
+- Since request to the provided APIs got blocked by CORS policy and this CORS policy should be enabled from server side, this application can be run in development by using Chrome browser extension: "Allow CORS: Access-Control-Allow-Origin"
 - Maximal fraction digit for price number is set to 8 digits, example: Rp 1,1234567890 will become Rp 1,12345678
 
 
