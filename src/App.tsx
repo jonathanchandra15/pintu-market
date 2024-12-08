@@ -9,6 +9,9 @@ import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { CustomToast, showErrorToast } from '@views/commons/CustomToast'
 import { CommonContext } from '@contexts/commonContext'
 
+import '@assets/fonts/NHaasGroteskTXPro-55Rg.ttf'
+import '@assets/fonts/NHaasGroteskTXPro-75Bd.ttf'
+
 const queryClient = new QueryClient()
 
 function App() {
@@ -17,6 +20,10 @@ function App() {
   function showErrorMessage(message: string) {
     showErrorToast(toastRef, message)
   }
+
+  useEffect(() => {
+    showErrorMessage('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+  }, [])
 
   return (
     <QueryClientProvider client={queryClient}>
