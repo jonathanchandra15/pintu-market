@@ -1,0 +1,65 @@
+@import '@styles/commons/Theme.scss';
+
+.l-table__row-value {
+    display: flex;
+    align-items: center;
+}
+
+th {
+    font-size: 1.4rem;
+    color: $gray-color-opacity-9;
+    width: 10rem;
+
+    svg {
+        width: 1.2rem;
+        height: 1.2rem;
+        color: $gray-color-opacity-9;
+    }
+}
+
+.m-table {
+    th:first-child {
+        border-top: 0.1rem solid $gray-color-opacity-6;
+        border-left: 0.1rem solid $gray-color-opacity-6;
+        border-bottom: 0.1rem solid $gray-color-opacity-6;
+        
+    }
+
+    th:last-child {
+        border-top: 0.1rem solid $gray-color-opacity-6;
+        border-right: 0.1rem solid $gray-color-opacity-6;
+        border-bottom: 0.1rem solid $gray-color-opacity-6;
+        
+    }
+    
+    th {
+        border-top: 0.1rem solid $gray-color-opacity-6;
+        border-bottom: 0.1rem solid $gray-color-opacity-6;
+        padding: 2rem;
+    }
+
+    tr {
+        td {
+            border-bottom: 0.1rem solid $gray-color-opacity-6;
+            padding: 2rem;
+        }
+
+        td:first-child {
+            border-left: 0.1rem solid $gray-color-opacity-6; 
+        }
+
+        td:last-child {
+            border-right: 0.1rem solid $gray-color-opacity-6;
+        }
+    }
+
+    tr:last-child {
+        td {
+            border-bottom: 0.1rem solid $gray-color-opacity-6;
+        }
+    }
+}
+
+.p-datatable-emptymessage {
+    font-size: 1.6rem;
+}

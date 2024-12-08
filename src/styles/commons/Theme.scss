@@ -1,32 +1,90 @@
 @font-face {
-    font-family: "Neue Haas Grotesk Pro";   /*Can be any text*/
+    font-family: "Neue Haas Grotesk Pro";
     src: local("NHaasGroteskTXPro-55Rg"),
         url("../../assets/fonts/NHaasGroteskTXPro-55Rg.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: "Neue Haas Grotesk Pro - Bold";   /*Can be any text*/
+    font-family: "Neue Haas Grotesk Pro - Bold";
     src: local("NHaasGroteskTXPro-75Rg"),
         url("../../assets/fonts/NHaasGroteskTXPro-75Bd.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Inter";
+    src: local("Inter_28pt-Regular"),
+        url("../../assets/fonts/Inter_28pt-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Inter - Bold";
+    src: local("Inter_24pt-Bold"),
+        url("../../assets/fonts/Inter_24pt-Bold.ttf") format("truetype");
 }
 
 $red-color: #e54040;
 $green-color: #25a764;
 $black-color: #020203;
 $gray-color: #929396;
-
-$h1-font-size: 2.8rem;
-$h2-font-size: 2rem;
-$p-font-size: 1.6rem;
+$gray-color-opacity-6: rgba(146,147,150,0.6);
+$gray-color-opacity-9: rgba(146,147,150,0.9);
 
 h1, h2, h3, h4, p {
     margin: 0rem;
 }
 
-* {
-    font-family: "Neue Haas Grotesk Pro";
+h1 {
+    font-size: 2.8rem;
 }
 
-.m-font--bold {
-    font-family: "Neue Haas Grotesk Pro - Bold"!important;
+h2 {
+    font-size: 2rem;
 }
+
+p {
+    font-size: 1.6rem;
+}
+
+* {
+    font-family: "Inter";
+}
+
+.m-font-neue {
+    font-family: "Neue Haas Grotesk Pro"!important;
+}
+
+.m-font-inter {
+    font-family: "Inter"!important;
+}
+
+.m-font-inter--bold {
+    font-family: "Inter - Bold"!important;
+}
+
+.m-font--green {
+    color:#25a764;
+}
+
+.m-font--red {
+    color: #e54040;
+}
+
+.m-font--grey {
+    color:#929396;
+}
+
+.m-font--black {
+    color: #020203;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+}
+
+@media only screen and (max-width: 767px) {
+    h1 {
+        font-size: 2rem;
+    }
+}
+  

@@ -1,0 +1,65 @@
+.l-market-page {
+    padding: 1.6rem 1.6rem 4rem 1.6rem;
+    margin: 0rem 10.2rem;
+}
+
+.m-currency-logo {
+    width: 3.2rem;
+    height: 3.2rem;
+}
+
+.l-market-page__title {
+    margin-bottom: 3.2rem;
+}
+
+.m-currency-table {
+    th:first-child {
+        padding-left: 6.2rem;
+    }
+}
+
+.m-currency-table__currency {
+    display: flex;
+    align-items: center;
+}
+
+.m-currency-table__currency-name {
+    display: flex;
+    flex-direction: column;
+}
+
+.m-currency-table__currency-icon {
+    margin-right: 1rem;
+}
+
+.m-currency-table__percent-icon {
+    margin-right: 0.4rem;
+}
+
+@media only screen and (max-width: 767px) {
+    .l-market-page {
+        margin: 0rem;
+        padding: 0rem;
+    }
+
+    .l-market-page__title {
+        margin-top: 1.6rem;
+        margin-left: 1.6rem;
+        margin-right: 1.6rem;
+    }
+
+    .m-currency-table {
+        th:first-child {
+            padding-left: 5.4rem;
+        }
+    }
+
+    .m-currency-logo {
+        width: 2.4rem;
+        height: 2.4rem;
+    }
+
+    .m-currency-table__currency-group {
+        font-size: 1.4rem;
+    }
+}
