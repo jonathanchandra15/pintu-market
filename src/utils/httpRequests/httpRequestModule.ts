@@ -1,10 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from 'axios'
-import { RequestConfigType } from '@utils/customTypes/httpRequestModuleCustomType'
+import { RequestConfigType } from '@utils/customTypes/utils/httpRequestModuleCustomType'
 import { HttpError } from '@utils/httpRequests/httpError'
-
-// function handleAxiosError(error: AxiosError) {
-
-// }
 
 async function request(requestConfig: RequestConfigType): Promise<object> {
   let response: AxiosResponse
