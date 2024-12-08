@@ -1,5 +1,6 @@
 import { tradeAPI } from '@utils/apis/tradeAPI'
 import { walletAPI } from '@utils/apis/walletAPI'
+import { PRICE_CHANGES_INTERVAL_TIME } from '@utils/constant'
 import {
   CurrencyType,
   PriceChangesMapType,
@@ -25,7 +26,7 @@ export function useMarket(showErrorMessage: (message: string) => void) {
 
   useEffect(() => {
     if (runInterval === true && Object.keys(supportedCurrencyMap).length > 0) {
-      setInterval(refreshPriceChanges, 10000)
+      setInterval(refreshPriceChanges, PRICE_CHANGES_INTERVAL_TIME)
       setRunInterval(false)
     }
   }, [runInterval, supportedCurrencyMap])
