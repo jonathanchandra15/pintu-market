@@ -15,6 +15,11 @@ th {
         height: 1.2rem;
         color: $gray-color-opacity-9;
     }
+
+    svg:hover {
+        color: $black-color;
+        transition: 0.8s;
+    }
 }
 
 .m-table {
@@ -36,6 +41,7 @@ th {
         border-top: 0.1rem solid $gray-color-opacity-6;
         border-bottom: 0.1rem solid $gray-color-opacity-6;
         padding: 2rem;
+        background-color: $white-color;
     }
 
     tr {
@@ -62,4 +68,13 @@ th {
 
 .p-datatable-emptymessage {
     font-size: 1.6rem;
+}
+
+.p-datatable .p-sortable-column.p-highlight {
+    background-color: $blue-color-opacity-9!important;
+    color: $blue-color;
+
+    svg {
+        color: $blue-color;
+    }
 }
