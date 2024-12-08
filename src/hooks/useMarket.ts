@@ -1,47 +1,66 @@
 import { tradeAPI } from '@utils/apis/tradeAPI'
 import { walletAPI } from '@utils/apis/walletAPI'
+import {
+  CurrencyType,
+  PriceChangesMapType,
+  PriceChangesResponseType,
+  PriceChangeType,
+  SupportedCurrenciesResponseType,
+  SupportedCurrencyMapItemType,
+  SupportedCurrencyMapType,
+} from '@utils/customTypes/views/marketCustomType'
 import { useEffect, useState } from 'react'
 
-export function useMarket() {
-  const [supportedCurrencyList, setSupportedCurrencyList] = useState<any>([])
-  const [supportedCurrencyMap, setSupportedCurrencyMap] = useState<any>({})
+export function useMarket(showErrorMessage: (message: string) => void) {
+  const [supportedCurrencyList, setSupportedCurrencyList] = useState<
+    SupportedCurrencyMapItemType[]
+  >([])
+  const [supportedCurrencyMap, setSupportedCurrencyMap] =
+    useState<SupportedCurrencyMapType>({})
+  const [runInterval, setRunInterval] = useState<boolean>(false)
 
   useEffect(() => {
     initFunction()
   }, [])
 
   useEffect(() => {
-    if (supportedCurrencyList.length > 0) {
-      setTimeout(refreshPriceChanges, 10000)
+    if (runInterval === true && Object.keys(supportedCurrencyMap).length > 0) {
+      setInterval(refreshPriceChanges, 10000)
+      setRunInterval(false)
     }
-  }, [supportedCurrencyList])
+  }, [runInterval, supportedCurrencyMap])
 
-  async function initFunction() {
+  async function initFunction(): Promise<void> {
     let priceChangeObjectListResponse = await getPriceChanges()
     await getSupportedCurrencies(priceChangeObjectListResponse)
+    setRunInterval(true)
   }
 
-  async function getSupportedCurrenciesRequest() {
+  async function getSupportedCurrenciesRequest(): Promise<CurrencyType[]> {
     try {
-      const response = await walletAPI.getSupportedCurrencies()
+      const response: SupportedCurrenciesResponseType =
+        await walletAPI.getSupportedCurrencies()
       return response.payload
-    } catch (error) {
+    } catch (error: any) {
+      showErrorMessage(error.errorMessage)
       return []
     }
   }
 
-  async function getSupportedCurrencies(priceChangeObjectList: any): Promise<void> {
-    const response = await getSupportedCurrenciesRequest()
-    let newSupportedCurrencyMap: any = {}
+  async function getSupportedCurrencies(
+    priceChangesMap: PriceChangesMapType
+  ): Promise<void> {
+    const response: CurrencyType[] = await getSupportedCurrenciesRequest()
+    let newSupportedCurrencyMap: SupportedCurrencyMapType = {}
 
     if (response.length !== 0) {
       response.forEach((supportedCurrency: any) => {
-        let currencyName: string = supportedCurrency.currencyGroup.toLowerCase()
-        let supportedCurrencyPriceChanges = priceChangeObjectList[currencyName]
-        if (supportedCurrencyPriceChanges !== undefined) {
-          newSupportedCurrencyMap[currencyName] = {
+        let currencyGroup: string = supportedCurrency.currencyGroup.toLowerCase()
+        let supportedCurrencyPriceChange: PriceChangeType = priceChangesMap[currencyGroup]
+        if (supportedCurrencyPriceChange !== undefined) {
+          newSupportedCurrencyMap[currencyGroup] = {
             ...supportedCurrency,
-            ...supportedCurrencyPriceChanges,
+            ...supportedCurrencyPriceChange,
           }
         }
       })
@@ -50,37 +69,36 @@ export function useMarket() {
     }
   }
 
-  async function getPriceChangesRequest() {
+  async function getPriceChangesRequest(): Promise<PriceChangeType[]> {
     try {
-      const response = await tradeAPI.getPriceChanges()
+      const response: PriceChangesResponseType = await tradeAPI.getPriceChanges()
       return response.payload
-    } catch (error) {
+    } catch (error: any) {
+      showErrorMessage(error.errorMessage)
       return []
     }
   }
 
-  async function getPriceChanges(): Promise<any[]> {
-    const response = await getPriceChangesRequest()
-    let priceChangesMap: any = {}
+  async function getPriceChanges(): Promise<PriceChangesMapType> {
+    const response: PriceChangeType[] = await getPriceChangesRequest()
+    let priceChangesMap: PriceChangesMapType = {}
 
     if (response.length !== 0) {
       response.forEach((priceChange: any) => {
-        let currency: string = priceChange.pair.split('/')[0]
-        priceChangesMap[currency] = priceChange
+        let currencyGroup: string = priceChange.pair.split('/')[0]
+        priceChangesMap[currencyGroup] = priceChange
       })
     }
     return priceChangesMap
   }
 
   async function refreshPriceChanges(): Promise<void> {
-    const response = await getPriceChangesRequest()
-    let priceChangesMap: any = {}
-    let supportedCurrencyMapCopy = { ...supportedCurrencyMap }
+    const response: PriceChangeType[] = await getPriceChangesRequest()
+    let supportedCurrencyMapCopy: SupportedCurrencyMapType = { ...supportedCurrencyMap }
 
     if (response.length !== 0) {
       response.forEach((priceChange: any) => {
         let currency: string = priceChange.pair.split('/')[0]
-        priceChangesMap[currency] = priceChange
         if (supportedCurrencyMapCopy[currency] !== undefined) {
           supportedCurrencyMapCopy[currency] = {
             ...supportedCurrencyMapCopy[currency],
