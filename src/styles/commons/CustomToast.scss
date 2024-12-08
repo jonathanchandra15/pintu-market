@@ -1,0 +1,22 @@
+.p-toast-message-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.l-toast__content {
+    display: flex;
+    align-items: center;
+    width: 90%;
+}
+
+.m-toast__icon {
+    font-size: 2rem;
+    margin-right: 0.6rem;
+    width: 10%;
+}
+
+.m-toast__message {
+    width: 80%;
+    overflow-wrap: break-word;
+}

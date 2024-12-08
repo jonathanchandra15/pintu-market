@@ -1,5 +1,5 @@
-import { MutableRefObject } from "react";
+import { MutableRefObject } from 'react'
 
 export interface CustomToastProps {
-    toastRef: MutableRefObject<any>
+  toastRef: MutableRefObject<any>
 }
